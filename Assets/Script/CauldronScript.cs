@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CauldronScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject Player;
+    Animator PlayerAnimator;
     void Start()
     {
-        
+        PlayerAnimator = Player.GetComponent<Animator>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -15,6 +16,14 @@ public class CauldronScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
+            PlayerAnimator.Play("Attack");
+            StartCoroutine(PlayIdleAfterDelay(0.5f));
         }
+    }
+
+    private IEnumerator PlayIdleAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PlayerAnimator.Play("Idle");
     }
 }

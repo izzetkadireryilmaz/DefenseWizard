@@ -23,4 +23,14 @@ public class Olustur : MonoBehaviour
             Debug.LogWarning("Oluþturulacak obje atanmadý!");
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Game Over");
+            // game over
+        }
+    }
+
 }
