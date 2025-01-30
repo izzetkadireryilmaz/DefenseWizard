@@ -7,7 +7,6 @@ public class EnemySpawn : MonoBehaviour
     public GameObject prefabToSpawn; // Instantiate edilecek prefab
     public GameObject referenceObject; // Pozisyonunu alacaðýmýz GameObject
     public float spawnInterval = 0.5f; // Kaç saniyede bir oluþturulacak
-    public int spawnCount = 10; // Toplam kaç defa spawn iþlemi gerçekleþecek
 
     void Start()
     {
@@ -17,7 +16,7 @@ public class EnemySpawn : MonoBehaviour
 
     private IEnumerator SpawnPrefabLimited()
     {
-        for (int i = 0; i < spawnCount; i++) // Belirtilen sayýda tekrar yap
+        for (int i = 0; i < GameLevelController.target; i++)
         {
             // Prefab'ý oluþtur
             if (prefabToSpawn != null && referenceObject != null)
