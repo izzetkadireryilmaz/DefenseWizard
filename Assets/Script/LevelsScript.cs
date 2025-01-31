@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -9,9 +10,9 @@ public class LevelsScript : MonoBehaviour
 {
     public Button[] buttons;
     public static int LoadLevel;
+    public Canvas startCanvas, levelCanvas;
     void Start()
     {
-        //PlayerPrefs.SetInt("Levels", 0);
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].interactable = false;
@@ -28,5 +29,26 @@ public class LevelsScript : MonoBehaviour
         GameLevelController.target = (index + 5) * 3;
         PlayerPrefs.SetInt("ActiveObject", index);
         SceneManager.LoadScene(1);
+    }
+
+    public void PlayButton()
+    {
+        Menu(levelCanvas, startCanvas);
+    }
+
+    public void HomeButton()
+    {
+        Menu(startCanvas, levelCanvas);
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
+
+    void Menu(Canvas open, Canvas close)
+    {
+        open.gameObject.SetActive(true);
+        close.gameObject.SetActive(false);
     }
 }

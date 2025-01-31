@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,6 +49,11 @@ public class GameLevelController : MonoBehaviour
         int newLevel = level + 1;
         PlayerPrefs.SetInt("Levels", newLevel);
         PlayerPrefs.Save();
+        SceneManager.LoadScene(0);
+    }
+
+    public void LevelDefeat()
+    {
         SceneManager.LoadScene(0);
     }
 

@@ -13,7 +13,7 @@ public class CauldronScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("CopyBullet"))
         {
             Destroy(collision.gameObject);
             PlayerAnimator.Play("Attack");

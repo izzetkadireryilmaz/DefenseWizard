@@ -10,7 +10,7 @@ public class SliderHandleMovement : MonoBehaviour
     private float lastValue = -1f;  // Son deðeri saklamak için
     private float threshold = 0.05f; // Minimum deðiþim eþiði
 
-    int Bullet_Amount = (GameLevelController.target / 2);
+    float Bullet_Amount = (GameLevelController.target / 1.6f);
 
     private void Start()
     {
