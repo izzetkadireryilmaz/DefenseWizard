@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,8 +12,12 @@ public class LevelsScript : MonoBehaviour
     public Button[] buttons;
     public static int LoadLevel;
     public Canvas startCanvas, levelCanvas;
+    public GameObject end;
+    Animator animator;
     void Start()
     {
+        //PlayerPrefs.SetInt("Levels", 0);
+        animator = end.GetComponent<Animator>();
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].interactable = false;
@@ -28,7 +33,7 @@ public class LevelsScript : MonoBehaviour
     {
         GameLevelController.target = (index + 5) * 3;
         PlayerPrefs.SetInt("ActiveObject", index);
-        SceneManager.LoadScene(1);
+        StartCoroutine(ELevel());
     }
 
     public void PlayButton()
@@ -51,4 +56,13 @@ public class LevelsScript : MonoBehaviour
         open.gameObject.SetActive(true);
         close.gameObject.SetActive(false);
     }
+
+    IEnumerator ELevel()
+    {
+        animator.Play("MenuEndAnim");
+        yield return new WaitForSeconds(1.9f);
+        SceneManager.LoadScene(1);
+    }
+
+
 }

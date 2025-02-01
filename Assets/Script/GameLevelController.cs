@@ -10,6 +10,7 @@ public class GameLevelController : MonoBehaviour
     public GameObject end;
     Animator animator;
     public Canvas gameCanvas, winCanvas;
+    public AudioSource win;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class GameLevelController : MonoBehaviour
         if (target == Spell.KilledEnemy)
         {
             animator.Play("EndAnim");
+            win.gameObject.SetActive(true);
             StartCoroutine(Canvas());
         }
     }

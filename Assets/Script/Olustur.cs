@@ -9,10 +9,24 @@ public class Olustur : MonoBehaviour
     public Transform spawnPoint;    // Oluþturulma pozisyonu ve rotasyonu
     public Canvas gameCanvas, deadCanvas;
     Animator animator;
+    public AudioSource lose;
+    bool enemyDestroy;
 
     private void Start()
     {
         animator = end.GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (enemyDestroy == true)
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
+        }
     }
     // Animasyon event ile çaðrýlacak method
     public void SpawnObject()
@@ -41,12 +55,9 @@ public class Olustur : MonoBehaviour
     }
     IEnumerator Dead()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            Destroy(enemy);
-        }
+        enemyDestroy = true;
         animator.Play("EndAnim");
+        lose.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         gameCanvas.gameObject.SetActive(false);
         deadCanvas.gameObject.SetActive(true);
