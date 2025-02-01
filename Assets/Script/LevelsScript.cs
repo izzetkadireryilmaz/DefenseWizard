@@ -16,7 +16,6 @@ public class LevelsScript : MonoBehaviour
     Animator animator;
     void Start()
     {
-        //PlayerPrefs.SetInt("Levels", 0);
         animator = end.GetComponent<Animator>();
         for (int i = 0; i < buttons.Length; i++)
         {
@@ -31,7 +30,7 @@ public class LevelsScript : MonoBehaviour
 
     public void SetActiveObject(int index)
     {
-        GameLevelController.target = (index + 5) * 3;
+        GameLevelController.target = (index + 5) * 10;
         PlayerPrefs.SetInt("ActiveObject", index);
         StartCoroutine(ELevel());
     }
